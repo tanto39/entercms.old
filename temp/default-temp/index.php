@@ -1,15 +1,16 @@
 <!--
 для подключения контента использовать ContentController::route($table), $table - имя таблицы, категория либо статья;
 для вывода меню использовать MenuController::route('top-menu'), top-menu - название меню в таблице, поле name;
+для вывода метатегов  MetaController::route();
 -->
+<? ContentController::getView($table); //выборка контента и метатегов ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="utf-8" />
+	<? MetaController::route(); ?>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<title></title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
+	
 	<link href="temp/<? echo $temp; ?>/css/style.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="temp/<? echo $temp; ?>/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="temp/<? echo $temp; ?>/js/myscripts.js"></script>
@@ -19,7 +20,6 @@
 </head>
 
 <body>
-
 <div class="wrapper">
 
 	<header class="header">
