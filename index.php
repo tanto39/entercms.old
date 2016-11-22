@@ -31,5 +31,5 @@ if(!($table = Uri::getContent($uri))){
 
 require_once "temp/index.php"; 
 echo 'hello 111';
-
+echo 'hello master';
 ?>
