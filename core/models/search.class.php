@@ -4,7 +4,7 @@ class Search extends Core{
 	
 function __construct(){}
 
-//получаем материал, $select - что искать, все (all), материалы (article), категории (category)
+//получаем материал, $select - что искать, материалы (article), категории (category), товары (product)
 static function getContent($query, $select){
 	global $mysqli;
 	//массив с выборкой по статьям, категориям
@@ -36,6 +36,17 @@ static function getContent($query, $select){
 		$search = $resultCategories->fetch_all(MYSQLI_ASSOC);		
 	}
 
+	if($select == 'product'){
+		//поиск по товарам
+		//подготовленный запрос
+		$stmt = $mysqli->prepare("SELECT title, description, url FROM products WHERE title LIKE ? OR content LIKE ? OR articul LIKE ?") or die('Ошибка p');
+		$stmt->bind_param('sss', $query, $query, $query) or die('Ошибка b');
+		$stmt->execute() or die('Ошибка e');
+		$resultArticles = $stmt->get_result() or die('Ошибка r');
+		$stmt->close();
+		
+		$search = $resultArticles->fetch_all(MYSQLI_ASSOC);		
+	}
 	return $search;
 }
 	

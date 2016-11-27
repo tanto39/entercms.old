@@ -37,6 +37,10 @@ $article['url'] - ссылка на материал или категорию
 				<label for="category-search">Поиск по категориям</label>
 				<input id="category-search" type="radio" name="select" value="category" />
 			</div>
+			<div>
+				<label for="product-search">Поиск по товарам</label>
+				<input id="product-search" type="radio" name="select" value="product" />
+			</div>
 		</div>
 	</form>
 	<div class="search-result">

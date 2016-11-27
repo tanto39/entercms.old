@@ -1,7 +1,7 @@
 <?php
 session_start();
-$uri = explode('?', $_SERVER['REQUEST_URI'])[0];
-require_once "temp-config.php";
+$uri = $_SERVER['REQUEST_URI'];
+
 //автозагрузка классов модели и контроллеров
 function loadController($nameClass){
 	if(file_exists("core/controllers/".$nameClass.".class.php")){
@@ -25,18 +25,15 @@ $mysqli = Db::getMysqli();
 
 //выбираем имя таблицы для подключения файлов представления и перенаправления, если значения нет, выдаем 404 ошибку
 if(!($table = Uri::getContent($uri))){
-	header("Location: /temp/$temp/404.php");
+	header('Location: /temp/404.php');
 };
-foreach($_GET as $key => $value){
-	if(($key != 'p') && ($key != 'admin')){
-		header("Location: /temp/$temp/404.php");
-	}
-}
 
-//перенаплавляем если в параметре $_GET['p'] для пагинации указана первая страница
-if($_GET['p'] == 1){
-	header("Location: $uri");
-}
 
-require_once "temp/$temp/index.php"; 
+require_once "temp/index.php"; 
+echo 'hello 111';
+<<<<<<< HEAD
+echo 'hello f';
+=======
+echo 'hello master';
+>>>>>>> master
 ?>

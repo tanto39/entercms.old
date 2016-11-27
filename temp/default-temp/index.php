@@ -10,11 +10,11 @@
 	<title></title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
-	<link href="temp/css/style.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="temp/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="temp/js/myscripts.js"></script>
+	<link href="temp/<? echo $temp; ?>/css/style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="temp/<? echo $temp; ?>/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="temp/<? echo $temp; ?>/js/myscripts.js"></script>
 	<!--[if IE]>
-	<script type="text/javascript" src="temp/js/iehtmlfix.js"></script>
+	<script type="text/javascript" src="temp/default-temp/js/iehtmlfix.js"></script>
 	<![endif]-->
 </head>
 
@@ -25,7 +25,7 @@
 	<header class="header">
     
     	<div class="logo">
-        	<a href="/"><img src="temp/images/logo.png" alt="Новая территория" title="Новая территория" /></a>
+        	<a href="/"><img src="temp/default-temp/images/logo.png" alt="Новая территория" title="Новая территория" /></a>
         </div>
         
         <div class="top-phone">
@@ -67,10 +67,10 @@
      <div class="slider slider2">
 		<div class="sliderContent">
         	<div class="item">
-				<img src="temp/images/img1.jpg" alt="Детские площадки" title="Лучшие детские площадки у нас!"/>
+				<img src="temp/default-temp/images/img1.jpg" alt="Детские площадки" title="Лучшие детские площадки у нас!"/>
 			</div>
             <div class="item">
-				<img src="temp/images/img2.jpg" alt="Лучшие детские площадки" title="Высокое качество"/>
+				<img src="temp/default-temp/images/img2.jpg" alt="Лучшие детские площадки" title="Высокое качество"/>
 			</div>
 		</div>
 	</div>

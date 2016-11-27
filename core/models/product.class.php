@@ -9,7 +9,7 @@ static function getContent($uri){
 	global $mysqli;
 	
 	//подготовленный запрос
-	$stmt = $mysqli->prepare("SELECT title, description, content, keywords, meta_desc, date_create, date_update, img_url, price FROM products WHERE url = ?") or die('Ошибка p');
+	$stmt = $mysqli->prepare("SELECT title, description, content, keywords, meta_desc, date_create, date_update, img_url, price, articul, manufacturer FROM products WHERE url = ?") or die('Ошибка p');
 	$stmt->bind_param("s", $uri) or die('Ошибка b');
 	$stmt->execute() or die('Ошибка e');
 	$result = $stmt->get_result() or die('Ошибка r');

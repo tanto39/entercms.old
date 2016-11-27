@@ -4,6 +4,7 @@
 abstract class Controller{
 	function __construct(){}
 	
+
 	//проверка валидности числа
 	public function toInteger($data){
 		$data = abs((int)$data);

@@ -14,6 +14,8 @@ class ContentController extends Controller{
 			require "core/views/productCategory.php";
 		}elseif($table == "products"){
 			require "core/views/product.php";
+		}elseif($table == "catalog"){
+			require "core/views/catalog.php";
 		}
 		
 	}	//end route
@@ -29,9 +31,26 @@ class ContentController extends Controller{
 			return(ProductCategory::getContent($uri));
 		}elseif($table == "products"){
 			return(Product::getContent($uri));
+		}elseif($table == "catalog"){
+			return(Catalog::getContent($uri));
 		}
 		
 	}	//end getView
+	
+	//сортировка
+	static function setSort($table){
+		global $uri;
+			if($table == "productcat"){
+				$sortBy = Controller::toString($_POST['sort']); //получаем сортировку 
+					switch ($sortBy){//задаем значения для сортировки при подстановке в запрос БД
+					case 'priceUp' : ProductCategory::$sort = 'price'; break;
+					case 'priceDown' : ProductCategory::$sort = 'price DESC'; break;
+					case 'manufacturer' : ProductCategory::$sort = 'manufacturer'; break;
+					default: ProductCategory::$sort = 'price';
+				}
+				echo ProductCategory::$sort;
+			}
+	}//end setSort
 	
 }
 	

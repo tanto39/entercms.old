@@ -3,10 +3,11 @@
 class ProductCategory extends Core{
 
 function __construct(){}
+static public $sort = 'price'; //по чему сортировать товар
 
 static function getContent($uri){
 	global $mysqli;
-	
+	$sort = self::$sort;
 	//получаем информацию о категории и товарах, входящих в эту категорию, формируем из этого массив $category
 	//подготовленные запросы
 	
@@ -18,7 +19,7 @@ static function getContent($uri){
 	$catInfo = $catInfoResult->fetch_assoc();
 	
 	
-	$stmt = $mysqli->prepare("SELECT title, description, date_create, date_update, img_url, price, url FROM products WHERE cat_id = ?");
+	$stmt = $mysqli->prepare("SELECT title, description, date_create, date_update, img_url, price, url, articul, manufacturer FROM products WHERE cat_id = ? ORDER BY $sort");
 	$stmt->bind_param("s", $catInfo['id']) or die('ошибка b');
 	$stmt->execute() or die('ошибка e');
 	$itemResult = $stmt->get_result() or die('ошибка r');
@@ -29,11 +30,6 @@ static function getContent($uri){
 	$category['items'] = $items;//заносим товары
 	return $category;
 	
-	/*
-	$result = $mysqli->query("SELECT id FROM productcat WHERE url = '$uri'");
-	$category = $result->fetch_assoc();
-	return $category;
-	*/
 }
 
 

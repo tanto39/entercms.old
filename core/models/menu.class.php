@@ -9,7 +9,7 @@ static function getContent($name){
 	global $mysqli;
 	
 	//подготовленный запрос
-	$stmt = $mysqli->prepare("SELECT title, name, href, parent, has_child FROM menu WHERE name = ?") or die('Ошибка p');
+	$stmt = $mysqli->prepare("SELECT title, name, href, parent, has_child FROM menu WHERE name = ? ORDER BY sort") or die('Ошибка p');
 	$stmt->bind_param("s", $name) or die('Ошибка b');
 	$stmt->execute() or die('Ошибка e');
 	$result = $stmt->get_result() or die('Ошибка r');
