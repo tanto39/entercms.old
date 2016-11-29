@@ -28,7 +28,7 @@ if(!($table = Uri::getContent($uri))){
 	header("Location: /temp/$temp/404.php");
 };
 foreach($_GET as $key => $value){
-	if(($key != 'p') && ($key != 'admin')){
+	if($key != 'p'){
 		header("Location: /temp/$temp/404.php");
 	}
 }
