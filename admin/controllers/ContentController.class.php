@@ -4,35 +4,48 @@
 class ContentController extends Controller{
 	
 	//подключаем файл представления
-	static function route($table){
-		global $uri;
-		if($table == "categories"){
-			require "core/views/category.php";
-		}elseif($table == "articles"){
-			require "core/views/article.php";
-		}elseif($table == "productcat"){
-			require "core/views/productCategory.php";
-		}elseif($table == "products"){
-			require "core/views/product.php";
-		}elseif($table == "catalog"){
-			require "core/views/catalog.php";
+	static function route(){
+
+		if($_GET['articles']){
+			require "views/articles.php"; //список статей
+		}elseif($_GET['editArticle']){
+			require "views/editArticle.php"; //редактирование статьи
+		}elseif($_GET['addArticle']){
+			require "views/addArticle.php"; //добавление статьи
+		}elseif($_GET['categories']){
+			require "views/categories.php"; //список категорий
+		}elseif($_GET['editCategory']){
+			require "views/editCategory.php"; //редактирование категории
+		}elseif($_GET['addCategory']){
+			require "views/addCategory.php"; //добавление категории
+		}elseif($_GET['products']){
+			require "views/products.php"; //список товаров
+		}elseif($_GET['editProduct']){
+			require "views/editProduct.php"; //редактировать товар
+		}elseif($_GET['addProduct']){
+			require "views/addProduct.php"; //добавить товар
+		}elseif($_GET['categoriesProduct']){
+			require "views/categoriesProduct.php"; //список категорий товаров
+		}elseif($_GET['editCategoriesProduct']){
+			require "views/editCategoriesProduct.php"; //редактировать категорию товара
+		}elseif($_GET['addCategoriesProduct']){
+			require "views/addCategoriesProduct.php"; //добавить категорию товара
+		}elseif($_GET['menus']){
+			require "views/menus.php"; //список меню
+		}elseif($_GET['editMenu']){
+			require "views/editMenu.php"; //редактировать меню
+		}elseif($_GET['addMenu']){
+			require "views/addMenu.php"; //добавить меню
 		}
 		
 	}	//end route
 	
 	//получаем выборку из БД
-	static function getView($table){
-		global $uri;
-		if($table == "categories"){
-			return(Category::getContent($uri));
-		}elseif($table == "articles"){
-			return(Article::getContent($uri));
-		}elseif($table == "productcat"){
-			return(ProductCategory::getContent($uri));
-		}elseif($table == "products"){
-			return(Product::getContent($uri));
-		}elseif($table == "catalog"){
-			return(Catalog::getContent($uri));
+	static function getView(){
+		if($_GET['articles']){
+			return Articles::getContent(); //список статей
+		}elseif($_GET['editArticle']){
+			return EditArticle::getContent($_GET['editArticle']); //список статей
 		}
 		
 	}	//end getView

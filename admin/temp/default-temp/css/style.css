@@ -176,6 +176,21 @@ h2{
 	padding-top: 20px;
 }
 
+/*----список статей------*/
+.edit-item{
+	margin: 0 0 20px 0;
+    border: 1px solid #c3bcbc;
+    padding: 20px;
+}
+/*------выход--------*/
+.logout button{
+	padding: 5px 20px;
+    background: #216161;
+    color: #ffffff;
+    margin: 5px;
+    float: right;
+    cursor: pointer;
+}
 /*----pagination------*/
 .pagination{
 	clear: both;

@@ -26,12 +26,15 @@
     
 		<div class="logout">
 			<form action="/admin/index.php" method="post" >
-				<input type="text" name="logout" value="logout"/>
+				<input type="hidden" name="logout" value="logout"/>
 				<button>Выйти</button>	
 			</form>
         </div>
 		
 		<div class="topmenu">
+		<ul>
+			<li><a href="/admin/index.php?articles=10">Материалы</a></li>
+		</ul>
             <div class="search">
 				<form action="/" method="post" class="form-inline">
 					<input type="hidden" name="option" value="search"/>
@@ -46,7 +49,7 @@
 
 		<div class="container">
 			<main class="content">
-				<? ?>
+				<? ContentController::route(); ?>
 			</main><!-- .content -->
 		</div><!-- .container-->
 
