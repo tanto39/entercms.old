@@ -4,6 +4,7 @@ class EditArticle extends Core{
 
 function __construct(){}
 
+//получаем статью
 static function getContent($getid){
 	global $mysqli;
 	
@@ -16,10 +17,18 @@ static function getContent($getid){
 	
 	$article = $result->fetch_assoc();
 	return $article;
-
-
 }
 
+//заносим в базу отредактированную статью
+static function editContent($content, $id){
+	global $mysqli;
+	//подготовленный запрос
+	$stmt = $mysqli->prepare("UPDATE articles SET content = ? WHERE id = ?") or die('Ошибка p');
+	$stmt->bind_param("ss", $content, $id) or die('Ошибка b');
+	$stmt->execute() or die('Ошибка e');
+	$stmt->close();
+
+}
 
 }
  

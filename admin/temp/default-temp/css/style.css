@@ -191,6 +191,18 @@ h2{
     float: right;
     cursor: pointer;
 }
+/*----редактор--------*/
+.save{
+	margin: 5px;
+    padding: 5px 20px;
+    background: #216161;
+    color: #ffffff;
+    cursor: pointer;
+}
+.after-save{
+	text-align: center;
+    display: none;
+}
 /*----pagination------*/
 .pagination{
 	clear: both;

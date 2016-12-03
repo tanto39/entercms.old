@@ -50,6 +50,11 @@ class ContentController extends Controller{
 		
 	}	//end getView
 	
+	//заносим статью в базу при редактировании
+	static function editArticle($content, $id){
+		EditArticle::editContent($content, $id);
+	}
+	
 	//сортировка
 	static function setSort($table){
 		global $uri;
