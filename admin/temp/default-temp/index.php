@@ -34,6 +34,7 @@
 		<div class="topmenu">
 		<ul>
 			<li><a href="/admin/index.php?articles=10">Материалы</a></li>
+			<li><a href="/admin/index.php?categories=10">Категории</a></li>
 		</ul>
             <div class="search">
 				<form action="/" method="post" class="form-inline">

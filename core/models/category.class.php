@@ -17,8 +17,8 @@ static function getContent($uri){
 	$catInfo = $catInfoResult->fetch_assoc();
 	
 	
-	$stmt = $mysqli->prepare("SELECT title, description, date_create, date_update, img_url, url FROM articles WHERE cat_id = ?") or die('ошибка s');
-	$stmt->bind_param('s', $catInfo['id']) or die('ошибка b');
+	$stmt = $mysqli->prepare("SELECT title, description, date_create, date_update, img_url, url FROM articles WHERE category = ?") or die('ошибка s');
+	$stmt->bind_param('s', $catInfo['title']) or die('ошибка b');
 	$stmt->execute() or die('ошибка e');
 	$itemResult = $stmt->get_result() or die('ошибка r');
 	$stmt->close();

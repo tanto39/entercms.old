@@ -1,9 +1,17 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
-	
+	<?php if($_POST['title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['add-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?articles=10" />
+	<?php elseif($_POST['cat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php endif;?>
 </head>
 
 <body>
@@ -28,11 +36,9 @@
 
 	$mysqli = Db::getMysqli();
 
-	//заносим отредактированную статью в базу
-	if(isset($_POST['content']) && isset($_POST['id'])){
-		ContentController::editArticle($_POST['content'], $_POST['id']);
-		echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Материал сохранен</div>";
-	}
+	//заносим данные из форм добавления и редактирования в базу
+	GetData::setData();
+	
 	?>
 
 </body>

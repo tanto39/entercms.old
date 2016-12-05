@@ -45,14 +45,33 @@ class ContentController extends Controller{
 		if($_GET['articles']){
 			return Articles::getContent(); //список статей
 		}elseif($_GET['editArticle']){
-			return EditArticle::getContent($_GET['editArticle']); //список статей
+			return EditArticle::getContent($_GET['editArticle']); //редактируем статью
+		}elseif($_GET['categories']){
+			return Categories::getContent($_GET['categories']); //список категорий
+		}elseif($_GET['editCategory']){
+			return EditCategory::getContent($_GET['editCategory']); //редактируем категорию
 		}
 		
 	}	//end getView
 	
+	//получаем категории
+	static function getCategories(){
+		return EditArticle::getCategories();
+	}
+	
 	//заносим статью в базу при редактировании
-	static function editArticle($content, $id){
-		EditArticle::editContent($content, $id);
+	static function editArticle($content, $id, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $oldurl){
+		EditArticle::editContent($content, $id, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $oldurl);
+	}
+	
+	//добавляем статью в базу при создании
+	static function addArticle($content, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url){
+		AddArticle::addContent($content, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url);
+	}
+	
+	//заносим категорию в базу при редактировании
+	static function editCategory($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl){
+		EditCategory::editContent($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl);
 	}
 	
 	//сортировка

@@ -6,6 +6,9 @@ tinymce.init({
 	theme: "modern",
 	skin: "lightgray",
 	
+	/*----language-----*/
+	language : "ru",
+	
 	/* width and height of the editor */
 	width: "100%",
 	height: 300,
@@ -55,4 +58,5 @@ tinymce.init({
 			{title: "Justify", icon: "alignjustify", format: "alignjustify"}
 		]}
 	]
+
 });

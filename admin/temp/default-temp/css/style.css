@@ -192,16 +192,45 @@ h2{
     cursor: pointer;
 }
 /*----редактор--------*/
-.save{
+#get-data-form input.save, a.addArticle, a.addCategory{
 	margin: 5px;
     padding: 5px 20px;
     background: #216161;
     color: #ffffff;
     cursor: pointer;
+	width: 20%;
 }
 .after-save{
 	text-align: center;
     display: none;
+}
+#get-data-form input{
+	display: block;
+    border: 1px solid #aba6a6;
+    padding: 5px 20px;
+    width: 80%;
+    margin: 0 0 20px 0;
+}
+#get-data-form select{
+	display: block;
+	margin: 0 0 20px 0;
+	font-size: 16px;
+    padding: 10px;
+}
+.short-desc{
+	width: 80%;
+    display: block;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+a.addArticle, a.addCategory{
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    margin: 0 0 20px 0;
 }
 /*----pagination------*/
 .pagination{

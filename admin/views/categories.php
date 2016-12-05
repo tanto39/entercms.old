@@ -1,8 +1,8 @@
-<?php $articles = ContentController::getView(); //получаем список статей
+<?php $categories = ContentController::getView(); //получаем список статей
 
-$limit = 10; //количество статей, выводимых на странице
-$max = 0; //счетчик для макс. кол-ва статей
-$count_rows = count($articles); //общее количество материалов, полученных из БД
+$limit = 10; //количество категории, выводимых на странице
+$max = 0; //счетчик для макс. кол-ва категорий
+$count_rows = count($categories); //общее количество категорий, полученных из БД
 
 if($_GET['p']){
 	$i = ($_GET['p']-1)*$limit;
@@ -12,29 +12,28 @@ if($_GET['p']){
 
 /* Расшифровка массива, возвращаемого из базы
  
-$articles['id'] - заголовок материала
-$articles['title'] - заголовок материала
-$articles['category'] - категория
+$categories['id'] - id категории
+$categories['title'] - заголовок категории
+$categories['date_create'] - дата создания категории
 
-пример: $articles[0]['title'] */
+пример: $categories[0]['title'] */
 
 ?>
 <? if(!isset($_POST['query'])) : //если нет поискового запроса выводим материалы ?>
 
 <div class="item-list">
-<!--добавление материала-->
-<a class="addArticle" href="/admin?addArticle=10">Добавить статью</a>
+<!--добавление категории-->
+<a class="addCategory" href="/admin?addCategory=10">Добавить категорию</a>
 
 <!--выводим материалы-->
 	<?php for($i;;$i++) : ?>
 		<?php //останавливаем цикл, если статьи не существует
-			if(!$articles[$i]){
+			if(!$categories[$i]){
 				break;
 			}	
 		?>
 		<div class="edit-item">
-			<a href="<?php echo '/admin?editArticle='.$articles[$i]['id']?>"><?php echo $articles[$i]['title']?></a></h2>
-			<div class="item-category"><?php echo $articles[$i]['category']?></div>
+			<a href="<?php echo '/admin?editCategory='.$categories[$i]['id']?>"><?php echo $categories[$i]['title']?></a></h2>
 		</div>
 		<?php 
 			$max++;
