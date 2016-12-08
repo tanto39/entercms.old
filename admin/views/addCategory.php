@@ -1,46 +1,29 @@
-<?php 
-	$categories = ContentController::getCategories(); //получаем категории
-?>
-<!-- Расшифровка массива, возвращаемого из базы
 
-$category['title'] - заголовок из списка категорий
--->
 <? if(!isset($_POST['query'])) : //если нет поискового запроса выводим статью?>
 
 <div class="edit">
 	<form id="get-data-form" method="POST" action="getdata.php">
 		<label>Заголовок:</label>
-		<input type="text" name="add-title" />
+		<input type="text" name="addcat-title" />
 		
 		<label>Ключевые слова:</label>
-		<input type="text" name="add-keywords" />
+		<input type="text" name="addcat-keywords" />
 		
 		<label>Description:</label>
-		<input type="text" name="add-meta_desc" />
+		<input type="text" name="addcat-meta_desc" />
 		
 		<label>Дата создания:</label>
-		<input type="text" name="add-date_create" />
+		<input type="text" name="addcat-date_create" />
 		
 		<label>Вступительная картинка:</label>
-		<input type="text" name="add-img_url" />
-		
-		<label>Автор:</label>
-		<input type="text" name="add-author" />
+		<input type="text" name="addcat-img_url" />
 		
 		<label>Url:</label>
-		<input type="text" name="add-url" />
-		
-		<label>Категория:</label>
-		<select name="add-category" />
-		<?php foreach($categories as $category) : ?>
-				<option value="<?php echo $category['title'];?>"><?php echo $category['title'];?></option>
-		<?php endforeach;?>
-		</select>
-		
+		<input type="text" name="addcat-url" />
+	
 		<label>Краткое описание:</label>
-		<textarea name="add-description" class="short-desc" /></textarea>
 		
-		<textarea class="tinymce" name="add-content" id="texteditor"></textarea>
+		<textarea class="tinymce" name="addcat-description" id="texteditor"></textarea>
 		
 		<input type="submit" value="Сохранить" class="save" />
 	</form>

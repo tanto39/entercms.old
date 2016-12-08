@@ -74,12 +74,17 @@ class ContentController extends Controller{
 		EditCategory::editContent($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl);
 	}
 	
+	//заносим категорию в базу при редактировании
+	static function addCategory($title, $keywords, $meta_desc, $description, $url, $img_url, $date_create){
+		AddCategory::addContent($title, $keywords, $meta_desc, $description, $url, $img_url, $date_create);
+	}
+	
 	//сортировка
 	static function setSort($table){
 		global $uri;
 			if($table == "productcat"){
 				$sortBy = Controller::toString($_POST['sort']); //получаем сортировку 
-					switch ($sortBy){//задаем значения для сортировки при подстановке в запрос БД
+				switch ($sortBy){//задаем значения для сортировки при подстановке в запрос БД
 					case 'priceUp' : ProductCategory::$sort = 'price'; break;
 					case 'priceDown' : ProductCategory::$sort = 'price DESC'; break;
 					case 'manufacturer' : ProductCategory::$sort = 'manufacturer'; break;

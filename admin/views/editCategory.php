@@ -16,7 +16,7 @@ $category['date_create'] - дата создания
 -->
 <? if(!isset($_POST['query'])) : //если нет поискового запроса выводим категорию?>
 
-<div class="editArticle">
+<div class="edit">
 	<form id="get-data-form" method="POST" action="getdata.php">
 		<label>Заголовок:</label>
 		<input type="text" name="cat-title" value="<?php echo $category['title'];?>" />

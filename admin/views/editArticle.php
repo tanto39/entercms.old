@@ -21,7 +21,7 @@ $category['title'] - заголовок из списка категорий
 -->
 <? if(!isset($_POST['query'])) : //если нет поискового запроса выводим статью?>
 
-<div class="editArticle">
+<div class="edit">
 	<form id="get-data-form" method="POST" action="getdata.php">
 		<label>Заголовок:</label>
 		<input type="text" name="title" value="<?php echo $article['title'];?>" />

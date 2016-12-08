@@ -22,10 +22,12 @@ abstract class Core{
 		global $mysqli;
 	//проверяем нет ли одинакового юрл, изменяем его
 		$uriResult = $mysqli->query("SELECT uri FROM uri WHERE uri='$checkUri'");
-		if($uriResult == false){
-			return $checkUri;
+		$uriCount = count($uriResult->fetch_all(MYSQLI_ASSOC));
+		if($uriCount >= 1){
+			$checkUri = $checkUri.'1';
+			return self::checkUri($checkUri);
 		}else{
-			return $checkUri.uniqid();
+			return $checkUri;
 		}
 		
 	}

@@ -81,6 +81,25 @@ class GetData extends Controller{
 
 		}//end if
 		
+		//добавление категории
+		if(isset($_POST['addcat-title']) && 
+			isset($_POST['addcat-keywords']) && 
+			isset($_POST['addcat-meta_desc']) && 
+			isset($_POST['addcat-description']) && 
+			isset($_POST['addcat-url']) && 
+			isset($_POST['addcat-img_url']) && 
+			isset($_POST['addcat-date_create'])){
+				ContentController::addCategory($_POST['addcat-title'], 
+												$_POST['addcat-keywords'], 
+												$_POST['addcat-meta_desc'], 
+												$_POST['addcat-description'], 
+												$_POST['addcat-url'], 
+												$_POST['addcat-img_url'], 
+												$_POST['addcat-date_create']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Категория добавлена</div>";
+
+		}//end if
+		
 		
 		
 	}//end setData

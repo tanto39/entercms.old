@@ -11,6 +11,8 @@ ob_start();
 		<meta http-equiv="refresh" content="1; url=/admin/index.php?articles=10" />
 	<?php elseif($_POST['cat-title']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['addcat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?categories=10" />		
 	<?php endif;?>
 </head>
 
