@@ -13,6 +13,23 @@
 	<link href="temp/default-temp/css/style.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="temp/default-temp/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="temp/default-temp/js/myscripts.js"></script>
+	
+	<?php if($_POST['title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['add-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?articles=10" />
+	<?php elseif($_POST['cat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['addcat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?categories=10" />
+	<?php elseif($_POST['selectcat']) : ?>
+		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['selectcatproduct']) : ?>
+		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['prod-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php endif;?>
+	
 	<!--[if IE]>
 	<script type="text/javascript" src="temp/default-temp/js/iehtmlfix.js"></script>
 	<![endif]-->
@@ -35,6 +52,7 @@
 		<ul>
 			<li><a href="/admin/index.php?articles=10">Материалы</a></li>
 			<li><a href="/admin/index.php?categories=10">Категории</a></li>
+			<li><a href="/admin/index.php?products=10">Товары</a></li>
 		</ul>
             <div class="search">
 				<form action="/" method="post" class="form-inline">

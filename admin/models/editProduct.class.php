@@ -1,6 +1,6 @@
 <?php
  
-class EditArticle extends Core{
+class EditProduct extends Core{
 
 function __construct(){}
 
@@ -9,7 +9,7 @@ static function getContent($getid){
 	global $mysqli;
 	
 	//подготовленный запрос
-	$stmt = $mysqli->prepare("SELECT id, title, content, keywords, meta_desc, description, date_create, date_update, img_url, author, category, url FROM articles WHERE id = ?") or die('Ошибка p');
+	$stmt = $mysqli->prepare("SELECT id, title, keywords, meta_desc, description, content, url, img_url, date_create, date_update, price, articul, manufacturer, category FROM products WHERE id = ?") or die('Ошибка p');
 	$stmt->bind_param("s", $getid) or die('Ошибка b');
 	$stmt->execute() or die('Ошибка e');
 	$result = $stmt->get_result() or die('Ошибка r');
@@ -20,7 +20,7 @@ static function getContent($getid){
 }
 
 //заносим в базу отредактированную статью
-static function editContent($content, $id, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $oldurl){
+static function editContent($id, $title, $keywords, $meta_desc, $description, $content, $url, $img_url, $date_create, $date_update, $price, $articul, $manufacturer, $category, $oldurl){
 	global $mysqli;
 	
 	//проверяем нет ли одинакового юрл, изменяем его
@@ -29,8 +29,8 @@ static function editContent($content, $id, $title, $keywords, $meta_desc, $date_
 	}
 	
 	//подготовленный запрос
-	$stmt = $mysqli->prepare("UPDATE articles SET content = ?, title = ?, keywords = ?, meta_desc = ?, date_create = ?, img_url = ?, author = ?, category = ?, description = ?, url = ? WHERE id = ?") or die('Ошибка p');
-	$stmt->bind_param("ssssssssssi", $content, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $id) or die('Ошибка b');
+	$stmt = $mysqli->prepare("UPDATE products SET title = ?, keywords = ?, meta_desc = ?, description = ?, content = ?, url = ?, img_url = ?, date_create = ?, date_update = ?, price = ?, articul = ?, manufacturer = ?, category = ? WHERE id = ?") or die('Ошибка p');
+	$stmt->bind_param("sssssssssssssi", $title, $keywords, $meta_desc, $description, $content, $url, $img_url, $date_create, $date_update, $price, $articul, $manufacturer, $category, $id) or die('Ошибка b');
 	$stmt->execute() or die('Ошибка e');
 	$stmt->close();
 	

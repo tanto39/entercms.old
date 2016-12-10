@@ -192,7 +192,7 @@ h2{
     cursor: pointer;
 }
 /*----редактор--------*/
-#get-data-form input.save, a.addArticle, a.addCategory{
+#get-data-form input.save, a.addArticle, a.addCategory, .category-list input.save{
 	margin: 5px;
     padding: 5px 20px;
     background: #216161;
@@ -216,6 +216,11 @@ h2{
 	margin: 0 0 20px 0;
 	font-size: 16px;
     padding: 10px;
+}
+.category-list select{
+	margin: 0 0 20px 0;
+    font-size: 16px;
+    padding: 9px;
 }
 .short-desc{
 	width: 80%;

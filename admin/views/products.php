@@ -1,10 +1,10 @@
 <?php
-$articles = View::$getView; //получаем список статей
+$products = View::$getView; //получаем список товаров
 $categories = View::$getCategories; //получаем категории
 
 $limit = 5; //количество статей, выводимых на странице
 $max = 0; //счетчик для макс. кол-ва статей
-$count_rows = count($articles); //общее количество материалов, полученных из БД
+$count_rows = count($products); //общее количество материалов, полученных из БД
 
 if($_GET['p']){
 	$i = ($_GET['p']-1)*$limit;
@@ -14,11 +14,12 @@ if($_GET['p']){
 
 /* Расшифровка массива, возвращаемого из базы
  
-$articles['id'] - заголовок материала
-$articles['title'] - заголовок материала
-$articles['category'] - категория
+$products['id'] - id товара
+$products['title'] - заголовок товара
+$products['category'] - категория
+$products['articul'] - категория
 
-пример: $articles[0]['title']
+пример: $products[0]['title']
 $category['title'] - заголовок из списка категорий */
 
 ?>
@@ -28,10 +29,10 @@ $category['title'] - заголовок из списка категорий */
 <div class="category-list">
 <form method="POST" action="<?php echo $uri; ?>">
 <label>Категория:</label>
-		<select name="selectcat" />
+		<select name="selectcatproduct" />
 		<option value="%">Все категории</option>
 		<?php foreach($categories as $category) : ?>
-			<?php if($category['title'] == $_COOKIE['activeCategory']) : ?>
+			<?php if($category['title'] == $_COOKIE['activeCategoryProduct']) : ?>
 				<option selected value="<?php echo $category['title'];?>"><?php echo $category['title'];?></option>
 			<?php else : ?>
 				<option value="<?php echo $category['title'];?>"><?php echo $category['title'];?></option>
@@ -42,18 +43,19 @@ $category['title'] - заголовок из списка категорий */
 </form>
 </div>
 <!--добавление материала-->
-<a class="addArticle" href="/admin?addArticle=10">Добавить статью</a>
+<a class="addArticle" href="/admin?addProduct=10">Добавить товар</a>
 
 <!--выводим материалы-->
 	<?php for($i;;$i++) : ?>
 		<?php //останавливаем цикл, если статьи не существует
-			if(!$articles[$i]){
+			if(!$products[$i]){
 				break;
 			}	
 		?>
 		<div class="edit-item">
-			<a href="<?php echo '/admin?editArticle='.$articles[$i]['id']?>"><?php echo $articles[$i]['title']?></a></h2>
-			<div class="item-category"><?php echo $articles[$i]['category']?></div>
+			<a href="<?php echo '/admin?editProduct='.$products[$i]['id']?>"><?php echo $products[$i]['title']?></a></h2>
+			<div class="item-category"><?php echo $products[$i]['category']?></div>
+			<div class="item-category">Артикул: <?php echo $products[$i]['articul']?></div>
 		</div>
 		<?php 
 			$max++;

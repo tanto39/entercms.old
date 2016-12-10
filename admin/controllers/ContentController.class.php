@@ -2,18 +2,19 @@
 //контроллер блога категории
 
 class ContentController extends Controller{
-	
 	//подключаем файл представления
 	static function route(){
 
 		if($_GET['articles']){
-			View::$getView = Articles::getContent(); //список статей из БД
+			View::$getCategories = Core::getCategories(); //получаем список категорий
+			View::$getView = Articles::getContent($_COOKIE['activeCategory']); //список статей из БД
 			require "views/articles.php"; //список статей
 		}elseif($_GET['editArticle']){
 			View::$getView = EditArticle::getContent($_GET['editArticle']); //получаем выборку для редактирования статьи
-			View::$getCategories = EditArticle::getCategories(); //получаем список категорий
+			View::$getCategories = Core::getCategories(); //получаем список категорий
 			require "views/editArticle.php"; //редактирование статьи
 		}elseif($_GET['addArticle']){
+			View::$getCategories = Core::getCategories(); //получаем список категорий
 			require "views/addArticle.php"; //добавление статьи
 		}elseif($_GET['categories']){
 			View::$getView = Categories::getContent($_GET['categories']); //список категорий из БД
@@ -24,8 +25,12 @@ class ContentController extends Controller{
 		}elseif($_GET['addCategory']){
 			require "views/addCategory.php"; //добавление категории
 		}elseif($_GET['products']){
+			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
+			View::$getView = Products::getContent($_COOKIE['activeCategoryProduct']); //список статей из БД
 			require "views/products.php"; //список товаров
 		}elseif($_GET['editProduct']){
+			View::$getView = EditProduct::getContent($_GET['editProduct']); //получаем выборку для редактирования статьи
+			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
 			require "views/editProduct.php"; //редактировать товар
 		}elseif($_GET['addProduct']){
 			require "views/addProduct.php"; //добавить товар
@@ -44,7 +49,6 @@ class ContentController extends Controller{
 		}
 		
 	}	//end route
-
 	
 	//сортировка
 	static function setSort($table){

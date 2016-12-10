@@ -29,6 +29,12 @@ spl_autoload_register('loadView');
 //вызываем статический метод подключения к базе синглтон
 $mysqli = Db::getMysqli();
 
+//заносим данные из форм добавления и редактирования в базу
+GetData::setData();
+//определяем активную категорию, заносим ее в куку для дальнейшего использования
+GetData::activeCategory();
+GetData::activeCategoryProduct();
+
 //авторизация
 $auth = []; //массив со значениями логина и пароля из формы
 if((isset($_POST['name']) && !empty($_POST['name'])) && (isset($_POST['pass']) && !empty($_POST['pass'])) ){

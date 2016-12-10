@@ -3,7 +3,21 @@
 
 class GetData extends Controller{
 	function __construct(){}
-	//редактирование статьи
+
+	//определяем активную категорию, заносим ее в куку для дальнейшего использования
+	public static function activeCategory(){
+		if(isset($_POST['selectcat'])){
+			setcookie('activeCategory', Core::toString($_POST['selectcat']), time()+(1000*60*60*24*30));
+		}
+	}
+	//определяем активную категорию товара, заносим ее в куку для дальнейшего использования
+	public static function activeCategoryProduct(){
+		if(isset($_POST['selectcatproduct'])){
+			setcookie('activeCategoryProduct', Core::toString($_POST['selectcatproduct']), time()+(1000*60*60*24*30));
+		}
+	}
+	
+	//редактирование статьи 
 	public static function setData(){
 		if(isset($_POST['content']) && 
 			isset($_POST['id']) && 
@@ -99,8 +113,41 @@ class GetData extends Controller{
 			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Категория добавлена</div>";
 
 		}//end if
-		
-		
+	
+	//редактирование товара
+	if(isset($_POST['prod-id']) && 
+			isset($_POST['prod-title']) && 
+			isset($_POST['prod-keywords']) && 
+			isset($_POST['prod-meta_desc']) && 
+			isset($_POST['prod-description']) && 
+			isset($_POST['prod-content']) && 
+			isset($_POST['prod-url']) && 
+			isset($_POST['prod-img_url']) && 
+			isset($_POST['prod-date_create']) && 
+			isset($_POST['prod-date_update']) && 
+			isset($_POST['prod-price']) && 
+			isset($_POST['prod-articul']) && 
+			isset($_POST['prod-manufacturer']) && 
+			isset($_POST['prod-category']) && 
+			isset($_POST['prod-oldurl'])){
+						EditProduct::editContent($_POST['prod-id'], 
+												$_POST['prod-title'], 
+												$_POST['prod-keywords'], 
+												$_POST['prod-meta_desc'], 
+												$_POST['prod-description'], 
+												$_POST['prod-content'], 
+												$_POST['prod-url'], 
+												$_POST['prod-img_url'], 
+												$_POST['prod-date_create'], 
+												$_POST['prod-date_update'], 
+												$_POST['prod-price'], 
+												$_POST['prod-articul'], 
+												$_POST['prod-manufacturer'], 
+												$_POST['prod-category'], 
+												$_POST['prod-oldurl']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Товар сохранен</div>";
+
+		}//end if	
 		
 	}//end setData
 		

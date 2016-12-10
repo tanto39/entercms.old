@@ -31,6 +31,29 @@ abstract class Core{
 		}
 		
 	}
+	
+	//получаем категории
+	static function getCategories(){
+		global $mysqli;
+		
+		$result = $mysqli->query("SELECT id, title FROM categories") or die('ошибка s');
+		$categories = $result->fetch_all(MYSQLI_ASSOC);
+
+		return $categories;
+
+	}
+	
+	//получаем категории товаров
+	static function getCategoriesProduct(){
+		global $mysqli;
+		
+		$result = $mysqli->query("SELECT id, title FROM productcat") or die('ошибка s');
+		$categories = $result->fetch_all(MYSQLI_ASSOC);
+
+		return $categories;
+
+	}
+
 }
  
  

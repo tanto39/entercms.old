@@ -16,7 +16,7 @@
 
 
 <div class="edit">
-	<form id="get-data-form" method="POST" action="getdata.php">
+	<form id="get-data-form" method="POST" action="index.php">
 		<label>Заголовок:</label>
 		<input type="text" name="cat-title" value="<?php echo $category['title'];?>" />
 		

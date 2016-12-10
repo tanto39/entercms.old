@@ -1,5 +1,5 @@
 <?php 
-	$categories = ContentController::getCategories(); //получаем категории
+	$categories = View::$getCategories; //получаем категории
 ?>
 <!-- Расшифровка массива, возвращаемого из базы
 
@@ -8,7 +8,7 @@ $category['title'] - заголовок из списка категорий
 <? if(!isset($_POST['query'])) : //если нет поискового запроса выводим статью?>
 
 <div class="edit">
-	<form id="get-data-form" method="POST" action="getdata.php">
+	<form id="get-data-form" method="POST" action="index.php">
 		<label>Заголовок:</label>
 		<input type="text" name="add-title" />
 		
