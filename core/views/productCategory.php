@@ -1,10 +1,6 @@
 <?php
 
-if(($_POST['sort']) && (!empty($_POST['sort'])) ){
-	ContentController::setSort($table);//вызываем метод сортировки
-}
-
-$productCategory = ContentController::getView($table); //получаем товары
+$productCategory = View::$getView; //получаем товары
 
 $limit = 3; //количество товаров, выводимых на странице
 $max = 0; //счетчик для макс. кол-ва товаров
@@ -44,7 +40,6 @@ $productCategory['items'][i]
 
 пример: $productCategory['items'][0]['description'] */
 ?>
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим категорию ?>
 
 <div class="product-category">
 	<!-- описание категории -->
@@ -98,9 +93,5 @@ $productCategory['items'][i]
 
 <!---пагинация---->
 <?php 
-	if($count_rows > $limit){NavController::getView($limit, $count_rows);} //подключаем файл пагинации
+	if($count_rows > $limit){NavView::getView($limit, $count_rows);} //подключаем файл пагинации
 ?>
-
-<? else : //если есть поисковый запрос подключаем представление поиска ?>
-	<? SearchController::route();?>
-<? endif; ?>

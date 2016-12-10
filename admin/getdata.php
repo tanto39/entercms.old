@@ -32,9 +32,16 @@ ob_start();
 			require_once "models/".$nameClass.".class.php";
 		}
 	}
+	
+	function loadView($nameClass){
+		if(file_exists("views/classes/".$nameClass.".class.php")){
+			require_once "views/classes/".$nameClass.".class.php";
+		}
+	}
 
 	spl_autoload_register('loadModel');
 	spl_autoload_register('loadController');
+	spl_autoload_register('loadView');
 
 	$mysqli = Db::getMysqli();
 

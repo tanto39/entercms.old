@@ -17,7 +17,7 @@ class GetData extends Controller{
 			isset($_POST['description']) && 
 			isset($_POST['url']) && 
 			isset($_POST['oldurl'])){
-				ContentController::editArticle($_POST['content'], 
+						EditArticle::editContent($_POST['content'], 
 												$_POST['id'], 
 												$_POST['title'], 
 												$_POST['keywords'], 
@@ -44,7 +44,7 @@ class GetData extends Controller{
 			isset($_POST['add-category']) && 
 			isset($_POST['add-description']) && 
 			isset($_POST['add-url'])){
-				ContentController::addArticle($_POST['add-content'],
+						AddArticle::addContent($_POST['add-content'],
 												$_POST['add-title'], 
 												$_POST['add-keywords'], 
 												$_POST['add-meta_desc'], 
@@ -68,7 +68,7 @@ class GetData extends Controller{
 			isset($_POST['cat-img_url']) && 
 			isset($_POST['cat-date_create']) && 
 			isset($_POST['cat-oldurl'])){
-				ContentController::editCategory($_POST['cat-id'], 
+						EditCategory::editContent($_POST['cat-id'], 
 												$_POST['cat-title'], 
 												$_POST['cat-keywords'], 
 												$_POST['cat-meta_desc'], 
@@ -89,7 +89,7 @@ class GetData extends Controller{
 			isset($_POST['addcat-url']) && 
 			isset($_POST['addcat-img_url']) && 
 			isset($_POST['addcat-date_create'])){
-				ContentController::addCategory($_POST['addcat-title'], 
+						AddCategory::addContent($_POST['addcat-title'], 
 												$_POST['addcat-keywords'], 
 												$_POST['addcat-meta_desc'], 
 												$_POST['addcat-description'], 

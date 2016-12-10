@@ -22,6 +22,12 @@ static function getContent($getid){
 //заносим в базу отредактированную категорию
 static function editContent($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl){
 	global $mysqli;
+	
+	//проверяем нет ли одинакового юрл, изменяем его
+	if($url != $oldurl){
+		$url = self::checkUri($url);
+	}
+	
 	//подготовленный запрос
 	$stmt = $mysqli->prepare("UPDATE categories SET title = ?, keywords = ?, meta_desc = ?, description = ?, url = ?, img_url = ?, date_create = ? WHERE id = ?") or die('Ошибка p');
 	$stmt->bind_param("sssssssi", $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $id) or die('Ошибка b');
@@ -34,17 +40,6 @@ static function editContent($id, $title, $keywords, $meta_desc, $description, $u
 	$stmt->execute() or die('Ошибка e');
 	$stmt->close();
 
-
-}
-
-//получаем категории
-static function getCategories(){
-	global $mysqli;
-	
-	$result = $mysqli->query("SELECT id, title FROM categories") or die('ошибка s');
-	$categories = $result->fetch_all(MYSQLI_ASSOC);
-
-	return $categories;
 
 }
 

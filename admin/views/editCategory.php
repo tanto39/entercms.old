@@ -1,20 +1,19 @@
 <?php 
-	$category = ContentController::getView(); //получаем категорию 
-	//$categories = ContentController::getCategories(); //получаем категории
-?>
-<!-- Расшифровка массива, возвращаемого из базы
-id, title, keywords, meta_desc, description, url, img_url, date_create
-$category[id] - id материала 
-$category['title'] - заголовок материала
-$category['keywords'] - мета keywords, 
-$category['meta_desc'] - мета description,
-$category['description'] - описание,
-$category['url'] - uri материала
-$category['img_url'] - юрл вступительной картинки
-$category['date_create'] - дата создания
+	$category = View::$getView; //получаем категорию 
 
--->
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим категорию?>
+/* 	Расшифровка массива, возвращаемого из базы
+	id, title, keywords, meta_desc, description, url, img_url, date_create
+	$category[id] - id материала 
+	$category['title'] - заголовок материала
+	$category['keywords'] - мета keywords, 
+	$category['meta_desc'] - мета description,
+	$category['description'] - описание,
+	$category['url'] - uri материала
+	$category['img_url'] - юрл вступительной картинки
+	$category['date_create'] - дата создания
+ */
+?>
+
 
 <div class="edit">
 	<form id="get-data-form" method="POST" action="getdata.php">
@@ -50,7 +49,3 @@ $category['date_create'] - дата создания
 	<script type="text/javascript" src="/plugins/tinymce/init-tinymce.js"></script>
 	
 </div>
-
-<? else : //если есть поисковый запрос подключаем представление поиска?>
-	<? SearchController::route();?>
-<? endif; ?>

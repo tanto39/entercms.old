@@ -7,14 +7,19 @@ class ContentController extends Controller{
 	static function route(){
 
 		if($_GET['articles']){
+			View::$getView = Articles::getContent(); //список статей из БД
 			require "views/articles.php"; //список статей
 		}elseif($_GET['editArticle']){
+			View::$getView = EditArticle::getContent($_GET['editArticle']); //получаем выборку для редактирования статьи
+			View::$getCategories = EditArticle::getCategories(); //получаем список категорий
 			require "views/editArticle.php"; //редактирование статьи
 		}elseif($_GET['addArticle']){
 			require "views/addArticle.php"; //добавление статьи
 		}elseif($_GET['categories']){
+			View::$getView = Categories::getContent($_GET['categories']); //список категорий из БД
 			require "views/categories.php"; //список категорий
 		}elseif($_GET['editCategory']){
+			View::$getView = EditCategory::getContent($_GET['editCategory']); //получаем выборку для редактирования категории
 			require "views/editCategory.php"; //редактирование категории
 		}elseif($_GET['addCategory']){
 			require "views/addCategory.php"; //добавление категории
@@ -39,45 +44,7 @@ class ContentController extends Controller{
 		}
 		
 	}	//end route
-	
-	//получаем выборку из БД
-	static function getView(){
-		if($_GET['articles']){
-			return Articles::getContent(); //список статей
-		}elseif($_GET['editArticle']){
-			return EditArticle::getContent($_GET['editArticle']); //редактируем статью
-		}elseif($_GET['categories']){
-			return Categories::getContent($_GET['categories']); //список категорий
-		}elseif($_GET['editCategory']){
-			return EditCategory::getContent($_GET['editCategory']); //редактируем категорию
-		}
-		
-	}	//end getView
-	
-	//получаем категории
-	static function getCategories(){
-		return EditArticle::getCategories();
-	}
-	
-	//заносим статью в базу при редактировании
-	static function editArticle($content, $id, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $oldurl){
-		EditArticle::editContent($content, $id, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url, $oldurl);
-	}
-	
-	//добавляем статью в базу при создании
-	static function addArticle($content, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url){
-		AddArticle::addContent($content, $title, $keywords, $meta_desc, $date_create, $img_url, $author, $category, $description, $url);
-	}
-	
-	//заносим категорию в базу при редактировании
-	static function editCategory($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl){
-		EditCategory::editContent($id, $title, $keywords, $meta_desc, $description, $url, $img_url, $date_create, $oldurl);
-	}
-	
-	//заносим категорию в базу при редактировании
-	static function addCategory($title, $keywords, $meta_desc, $description, $url, $img_url, $date_create){
-		AddCategory::addContent($title, $keywords, $meta_desc, $description, $url, $img_url, $date_create);
-	}
+
 	
 	//сортировка
 	static function setSort($table){

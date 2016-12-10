@@ -1,5 +1,6 @@
 <?php 
-	$product = ContentController::getView($table); global $temp;//получаем товар
+	$product = View::$getView; //получаем товар
+	global $temp;
 	$product['img_url'] = explode(';', $product['img_url']); //получаем картинки
 
 /* Расшифровка массива, возвращаемого из базы
@@ -19,7 +20,7 @@ $product['manufacturer'] - производитель
 
 */
 ?>
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим товар ?>
+
 <script type="text/javascript" src="temp/<? echo $temp; ?>/js/img-product.js"></script>
 <div class="product">
 	<h1><?php echo $product['title'];?></h1>
@@ -55,8 +56,4 @@ $product['manufacturer'] - производитель
 	
 </div>
 
-<? else : //если есть поисковый запрос подключаем представление поиска ?>
-	<? SearchController::route();?>
-<? endif; ?>
- 
 

@@ -1,7 +1,6 @@
 <?php
 
-class NavController extends Controller{
-
+class NavView{
 	function __construct(){}
 	
 	static public $limit = 3; //предел выводимых на странице материалов

@@ -1,6 +1,6 @@
-<?php $categories = ContentController::getView(); //получаем список статей
+<?php $categories = View::$getView;; //получаем список категорий
 
-$limit = 10; //количество категории, выводимых на странице
+$limit = 5; //количество категории, выводимых на странице
 $max = 0; //счетчик для макс. кол-ва категорий
 $count_rows = count($categories); //общее количество категорий, полученных из БД
 
@@ -19,7 +19,6 @@ $categories['date_create'] - дата создания категории
 пример: $categories[0]['title'] */
 
 ?>
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим материалы ?>
 
 <div class="item-list">
 <!--добавление категории-->
@@ -48,9 +47,5 @@ $categories['date_create'] - дата создания категории
 
 <!---пагинация---->
 <?php 
-	if($count_rows > $limit){NavController::getView($limit, $count_rows);} //подключаем файл пагинации
+	if($count_rows > $limit){NavView::getView($limit, $count_rows);} //подключаем файл пагинации
 ?>
-
-<? else : //если есть поисковый запрос подключаем представление поиска ?>
-	<? //SearchController::route();?>
-<? endif; ?>

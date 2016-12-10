@@ -1,6 +1,6 @@
-<?php $articles = ContentController::getView(); //получаем список статей
+<?php $articles = View::$getView; //получаем список статей
 
-$limit = 10; //количество статей, выводимых на странице
+$limit = 5; //количество статей, выводимых на странице
 $max = 0; //счетчик для макс. кол-ва статей
 $count_rows = count($articles); //общее количество материалов, полученных из БД
 
@@ -19,7 +19,6 @@ $articles['category'] - категория
 пример: $articles[0]['title'] */
 
 ?>
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим материалы ?>
 
 <div class="item-list">
 <!--добавление материала-->
@@ -49,9 +48,5 @@ $articles['category'] - категория
 
 <!---пагинация---->
 <?php 
-	if($count_rows > $limit){NavController::getView($limit, $count_rows);} //подключаем файл пагинации
+	if($count_rows > $limit){NavView::getView($limit, $count_rows);} //подключаем файл пагинации
 ?>
-
-<? else : //если есть поисковый запрос подключаем представление поиска ?>
-	<? //SearchController::route();?>
-<? endif; ?>

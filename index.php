@@ -2,7 +2,7 @@
 session_start();
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
 require_once "temp-config.php";
-//автозагрузка классов модели и контроллеров
+//автозагрузка классов модели и контроллеров и View
 function loadController($nameClass){
 	if(file_exists("core/controllers/".$nameClass.".class.php")){
 		require_once "core/controllers/".$nameClass.".class.php";
@@ -15,9 +15,15 @@ function loadModel($nameClass){
 	}
 }
 
+function loadView($nameClass){
+	if(file_exists("core/views/classes/".$nameClass.".class.php")){
+		require_once "core/views/classes/".$nameClass.".class.php";
+	}
+}
+
 spl_autoload_register('loadModel');
 spl_autoload_register('loadController');
-
+spl_autoload_register('loadView');
 
 
 //вызываем статический метод подключения к базе синглтон

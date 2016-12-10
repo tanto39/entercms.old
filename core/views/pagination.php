@@ -1,8 +1,8 @@
 
 	<?php
 
-		$pages = ceil(NavController::$count_rows/NavController::$limit); //количество ссылок в пагинации	
-		$nav = NavController::getNav($pages); //получаем массив со ссылками
+		$pages = ceil(NavView::$count_rows/NavView::$limit); //количество ссылок в пагинации	
+		$nav = NavView::getNav($pages); //получаем массив со ссылками
 	?>
 	<div class = "pagination">
 

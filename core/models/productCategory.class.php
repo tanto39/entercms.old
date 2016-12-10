@@ -8,6 +8,17 @@ static public $sort = 'price'; //по чему сортировать товар
 static function getContent($uri){
 	global $mysqli;
 	$sort = self::$sort;
+	
+	if(($_POST['sort']) && (!empty($_POST['sort'])) ){
+		$sortBy = Core::toString($_POST['sort']); //получаем сортировку 
+		switch ($sortBy){//задаем значения для сортировки при подстановке в запрос БД
+			case 'priceUp' : $sort = 'price'; break;
+			case 'priceDown' : $sort = 'price DESC'; break;
+			case 'manufacturer' : $sort = 'manufacturer'; break;
+			default: $sort = 'price';
+		}
+	}
+				
 	//получаем информацию о категории и товарах, входящих в эту категорию, формируем из этого массив $category
 	//подготовленные запросы
 	

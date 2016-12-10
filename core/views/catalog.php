@@ -1,4 +1,4 @@
-<?php $catalog = ContentController::getView($table); //получаем материал
+<?php $catalog = View::$getView; //получаем выборку из Бд 
 
 /* 
 Расшифровка массива, возвращаемого из базы $catalog
@@ -13,8 +13,6 @@
 */
 ?>
 
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим статью?>
-
 <div class="catalog">
 	<h1>Каталог товаров</h1>
 	
@@ -28,8 +26,5 @@
 	
 </article>
 
-<? else : //если есть поисковый запрос подключаем представление поиска?>
-	<? SearchController::route();?>
-<? endif; ?>
  
 

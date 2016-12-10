@@ -1,26 +1,13 @@
 <?php
 
-if(isset($_POST['query']) && !empty($_POST['query'])){
-	//фильтруем поисковый запрос
-	$query = SearchController::toString($_POST['query']);
-}else{
-	exit('ошибка поиска');
-}
+$search = View::$getSearch; //получаем выборку из базы 
 
-$select = 'article';
-if(isset($_POST['select']) && !empty($_POST['select'])){
-	//фильтруем селектор поиска по материалу или категории
-	$select = SearchController::toString($_POST['select']);
-}
-
-$search = SearchController::getView($query, $select); //получаем выборку из базы 
-?>
-<!-- Расшифровка массива, возвращаемого из базы
+/* Расшифровка массива, возвращаемого из базы
 
 $search[i]['title'] - заголовок материала или категории
 $search[i]['description'] - описание материала или категории
-$article['url'] - ссылка на материал или категорию
--->
+$article['url'] - ссылка на материал или категорию */
+?>
 
 <div class="search-content">
 	<form action="/" method="post" class="form-inline">

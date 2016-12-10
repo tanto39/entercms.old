@@ -1,5 +1,5 @@
-<?php $menu = MenuController::getView(MenuController::$name); global $uri;//получаем меню ?>
-<!-- Расшифровка массива, возвращаемого из базы
+<?php $menu = View::$getMenu; global $uri;//получаем меню 
+/* Расшифровка массива, возвращаемого из базы
 
 $menu[i]['title'] - заголовок пункта меню
 $menu[i]['name'] - имя меню, 
@@ -7,10 +7,10 @@ $menu[i]['href'] - ссылка пункта меню
 $menu[i]['parent'] - родительский пункт меню
 $menu[i]['has_child'] - наличие вложенных пунктов 0-нет, 1-да
 
-пример $menu[0]['title']
--->
+пример $menu[0]['title'] */
+?>
 
-<ul class="<? MenuController::$name?>">
+<ul class="<? echo View::$nameMenu; ?>">
 	<? foreach($menu as $itemMenu) : ?>
 		<!-- получаем корневые пункты меню -->
 		<? if($itemMenu['parent'] == 'first') : ?>

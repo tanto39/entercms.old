@@ -1,4 +1,4 @@
-<?php $category = ContentController::getView($table);
+<?php $category = View::$getView; //получаем выборку из Бд
 
 $limit = 5; //количество статей, выводимых на странице
 $max = 0; //счетчик для макс. кол-ва статей
@@ -34,7 +34,6 @@ $category['items'][i]
 пример: $category['items'][0]['description'] */
 
 ?>
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим категорию ?>
 
 <div class="category">
 	<!-- описание категории -->
@@ -70,9 +69,5 @@ $category['items'][i]
 
 <!---пагинация---->
 <?php 
-	if($count_rows > $limit){NavController::getView($limit, $count_rows);} //подключаем файл пагинации
+	if($count_rows > $limit){NavView::getView($limit, $count_rows);} //подключаем файл пагинации
 ?>
-
-<? else : //если есть поисковый запрос подключаем представление поиска ?>
-	<? SearchController::route();?>
-<? endif; ?>
