@@ -56,6 +56,13 @@ $category['title'] - заголовок из списка категорий */
 			<a href="<?php echo '/admin?editProduct='.$products[$i]['id']?>"><?php echo $products[$i]['title']?></a></h2>
 			<div class="item-category"><?php echo $products[$i]['category']?></div>
 			<div class="item-category">Артикул: <?php echo $products[$i]['articul']?></div>
+			
+			<!--удаление товара-->
+			<form class="delete" method="POST" action="<?php echo $uri; ?>">
+				<input type="hidden" name="delete-id" value="<?php echo $products[$i]['id'] ?>" />
+				<input type="hidden" name="delete-type" value="product" />
+				<input type="submit" value="Удалить" class="save" />
+			</form>
 		</div>
 		<?php 
 			$max++;

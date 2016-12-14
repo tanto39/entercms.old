@@ -17,6 +17,7 @@ class GetData extends Controller{
 		}
 	}
 	
+	
 	//редактирование статьи 
 	public static function setData(){
 		if(isset($_POST['content']) && 
@@ -147,7 +148,45 @@ class GetData extends Controller{
 												$_POST['prod-oldurl']);
 			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Товар сохранен</div>";
 
-		}//end if	
+		}//end if
+		
+		//добавление товара
+	if(isset($_POST['addprod-title']) && 
+			isset($_POST['addprod-keywords']) && 
+			isset($_POST['addprod-meta_desc']) && 
+			isset($_POST['addprod-description']) && 
+			isset($_POST['addprod-content']) && 
+			isset($_POST['addprod-url']) && 
+			isset($_POST['addprod-img_url']) && 
+			isset($_POST['addprod-date_create']) && 
+			isset($_POST['addprod-date_update']) && 
+			isset($_POST['addprod-price']) && 
+			isset($_POST['addprod-articul']) && 
+			isset($_POST['addprod-manufacturer']) && 
+			isset($_POST['addprod-category'])){
+						AddProduct::addContent($_POST['addprod-title'], 
+												$_POST['addprod-keywords'], 
+												$_POST['addprod-meta_desc'], 
+												$_POST['addprod-description'], 
+												$_POST['addprod-content'], 
+												$_POST['addprod-url'], 
+												$_POST['addprod-img_url'], 
+												$_POST['addprod-date_create'], 
+												$_POST['addprod-date_update'], 
+												$_POST['addprod-price'], 
+												$_POST['addprod-articul'], 
+												$_POST['addprod-manufacturer'], 
+												$_POST['addprod-category']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Товар добавлен</div>";
+
+		}//end if
+		
+		//удаление статьи или товара
+		if(isset($_POST['delete-id']) && isset($_POST['delete-type'])){
+			 ItemDelete::deleteContent($_POST['delete-id'], $_POST['delete-type']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Удалено</div>";
+
+		}//end if
 		
 	}//end setData
 		

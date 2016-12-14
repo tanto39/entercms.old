@@ -222,6 +222,10 @@ h2{
     font-size: 16px;
     padding: 9px;
 }
+.category-list  input.save{
+	background: #d6d8da;
+    color: #507373;
+}
 .short-desc{
 	width: 80%;
     display: block;
@@ -276,6 +280,13 @@ a.addArticle, a.addCategory{
 	padding: 2px 10px;
     cursor: pointer;
     background: #bed8d8;
+}
+/*----удаление------*/
+.delete input{
+	padding: 5px 10px;
+    font-size: 0.9em;
+    background: #d6d8da;
+    cursor: pointer;
 }
 
 /*----adaptation------*/

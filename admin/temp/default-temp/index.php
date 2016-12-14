@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="temp/default-temp/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="temp/default-temp/js/myscripts.js"></script>
 	
+	<!--метатеги для перенаправления после добавления или редактирования-->
 	<?php if($_POST['title']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['add-title']) : ?>
@@ -27,6 +28,10 @@
 	<?php elseif($_POST['selectcatproduct']) : ?>
 		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['prod-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['addprod-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?products=10" />
+	<?php elseif($_POST['delete-id']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php endif;?>
 	

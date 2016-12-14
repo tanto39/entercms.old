@@ -14,9 +14,9 @@ if($_GET['p']){
 
 /* Расшифровка массива, возвращаемого из базы
  
-$articles['id'] - заголовок материала
-$articles['title'] - заголовок материала
-$articles['category'] - категория
+$articles[$i]['id'] - заголовок материала
+$articles[$i]['title'] - заголовок материала
+$articles[$i]['category'] - категория
 
 пример: $articles[0]['title']
 $category['title'] - заголовок из списка категорий */
@@ -54,6 +54,12 @@ $category['title'] - заголовок из списка категорий */
 		<div class="edit-item">
 			<a href="<?php echo '/admin?editArticle='.$articles[$i]['id']?>"><?php echo $articles[$i]['title']?></a></h2>
 			<div class="item-category"><?php echo $articles[$i]['category']?></div>
+			<!--удаление статьи-->
+			<form class="delete" method="POST" action="<?php echo $uri; ?>">
+				<input type="hidden" name="delete-id" value="<?php echo $articles[$i]['id'] ?>" />
+				<input type="hidden" name="delete-type" value="articles" />
+				<input type="submit" value="Удалить" class="save" />
+			</form>
 		</div>
 		<?php 
 			$max++;

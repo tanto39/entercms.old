@@ -33,6 +33,13 @@ $categories['date_create'] - дата создания категории
 		?>
 		<div class="edit-item">
 			<a href="<?php echo '/admin?editCategory='.$categories[$i]['id']?>"><?php echo $categories[$i]['title']?></a></h2>
+			
+			<!--удаление категории-->
+			<form class="delete" method="POST" action="<?php echo $uri; ?>">
+				<input type="hidden" name="delete-id" value="<?php echo $categories[$i]['id'] ?>" />
+				<input type="hidden" name="delete-type" value="category" />
+				<input type="submit" value="Удалить" class="save" />
+			</form>
 		</div>
 		<?php 
 			$max++;
