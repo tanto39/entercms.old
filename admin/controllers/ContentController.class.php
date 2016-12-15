@@ -36,10 +36,14 @@ class ContentController extends Controller{
 			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
 			require "views/addProduct.php"; //добавить товар
 		}elseif($_GET['categoriesProduct']){
+			View::$getView = CategoriesProduct::getContent($_GET['categoriesProduct']); //список категорий из БД
 			require "views/categoriesProduct.php"; //список категорий товаров
 		}elseif($_GET['editCategoriesProduct']){
+			View::$getView = EditCategoriesProduct::getContent($_GET['editCategoriesProduct']); //получаем выборку для редактирования категории товаров
+			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
 			require "views/editCategoriesProduct.php"; //редактировать категорию товара
 		}elseif($_GET['addCategoriesProduct']){
+			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
 			require "views/addCategoriesProduct.php"; //добавить категорию товара
 		}elseif($_GET['menus']){
 			require "views/menus.php"; //список меню

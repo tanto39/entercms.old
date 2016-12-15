@@ -31,6 +31,10 @@
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['addprod-title']) : ?>
 		<meta http-equiv="refresh" content="1; url=/admin/index.php?products=10" />
+	<?php elseif($_POST['prodcat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['addprodcat-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?categoriesProduct=10" />
 	<?php elseif($_POST['delete-id']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php endif;?>
@@ -58,6 +62,7 @@
 			<li><a href="/admin/index.php?articles=10">Материалы</a></li>
 			<li><a href="/admin/index.php?categories=10">Категории</a></li>
 			<li><a href="/admin/index.php?products=10">Товары</a></li>
+			<li><a href="/admin/index.php?categoriesProduct=10">Категории товаров</a></li>
 		</ul>
             <div class="search">
 				<form action="/" method="post" class="form-inline">

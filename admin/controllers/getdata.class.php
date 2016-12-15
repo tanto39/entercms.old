@@ -181,6 +181,53 @@ class GetData extends Controller{
 
 		}//end if
 		
+		//редактирование категории товара
+		if(isset($_POST['prodcat-id']) && 
+			isset($_POST['prodcat-title']) && 
+			isset($_POST['prodcat-keywords']) && 
+			isset($_POST['prodcat-meta_desc']) && 
+			isset($_POST['prodcat-description']) && 
+			isset($_POST['prodcat-url']) && 
+			isset($_POST['prodcat-img_url']) && 
+			isset($_POST['prodcat-parent']) && 
+			isset($_POST['prodcat-date_create']) && 
+			isset($_POST['prodcat-oldurl'])){
+						EditCategoriesProduct::editContent($_POST['prodcat-id'], 
+												$_POST['prodcat-title'], 
+												$_POST['prodcat-keywords'], 
+												$_POST['prodcat-meta_desc'], 
+												$_POST['prodcat-description'], 
+												$_POST['prodcat-url'], 
+												$_POST['prodcat-img_url'], 
+												$_POST['prodcat-parent'], 
+												$_POST['prodcat-date_create'], 
+												$_POST['prodcat-oldurl']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Категория сохранена</div>";
+
+		}//end if
+		
+		//добавление категории товара
+		if(isset($_POST['addprodcat-title']) && 
+			isset($_POST['addprodcat-keywords']) && 
+			isset($_POST['addprodcat-meta_desc']) && 
+			isset($_POST['addprodcat-description']) && 
+			isset($_POST['addprodcat-url']) && 
+			isset($_POST['addprodcat-img_url']) && 
+			isset($_POST['addprodcat-parent']) && 
+			isset($_POST['addprodcat-date_create'])){
+						AddCategoriesProduct::addContent($_POST['addprodcat-title'], 
+												$_POST['addprodcat-keywords'], 
+												$_POST['addprodcat-meta_desc'], 
+												$_POST['addprodcat-description'], 
+												$_POST['addprodcat-url'], 
+												$_POST['addprodcat-img_url'], 
+												$_POST['addprodcat-parent'], 
+												$_POST['addprodcat-date_create']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Категория добавлена</div>";
+
+		}//end if
+		
+		
 		//удаление статьи или товара
 		if(isset($_POST['delete-id']) && isset($_POST['delete-type'])){
 			 ItemDelete::deleteContent($_POST['delete-id'], $_POST['delete-type']);
