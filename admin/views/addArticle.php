@@ -5,7 +5,6 @@
 
 $category['title'] - заголовок из списка категорий
 -->
-<? if(!isset($_POST['query'])) : //если нет поискового запроса выводим статью?>
 
 <div class="edit">
 	<form id="get-data-form" method="POST" action="index.php">
@@ -50,7 +49,3 @@ $category['title'] - заголовок из списка категорий
 	<script type="text/javascript" src="/plugins/tinymce/init-tinymce.js"></script>
 	
 </div>
-
-<? else : //если есть поисковый запрос подключаем представление поиска?>
-	<? SearchController::route();?>
-<? endif; ?>

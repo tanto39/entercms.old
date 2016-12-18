@@ -16,7 +16,26 @@ class GetData extends Controller{
 			setcookie('activeCategoryProduct', Core::toString($_POST['selectcatproduct']), time()+(1000*60*60*24*30));
 		}
 	}
+	//определяем активное меню, заносим ее в куку для дальнейшего использования
+	public static function activeMenu(){
+		if(isset($_POST['selectmenu'])){
+			setcookie('activeMenu', Core::toString($_POST['selectmenu']), time()+(1000*60*60*24*30));
+		}
+	}
 	
+	//определяем активный тип меню при добавлении пункта меню, заносим в куку для дальнейшего использования
+	public static function activeTypeMenu(){
+		if(isset($_POST['add-get-type-menu'])){
+			setcookie('add-get-type-menu', Core::toString($_POST['add-get-type-menu']), time()+(1000*60*60*24*30));
+		}
+	}
+	
+	//изменяем тип меню
+	public static function setTypeMenu(){
+		if(isset($_POST['get-type-menu']) && isset($_POST['get-type-menu-id'])){
+			EditItemMenu::setTypeMenu($_POST['get-type-menu'], $_POST['get-type-menu-id']);
+		}
+	}
 	
 	//редактирование статьи 
 	public static function setData(){
@@ -227,8 +246,65 @@ class GetData extends Controller{
 
 		}//end if
 		
+		//редактирование пункта меню
+		if(isset($_POST['itemmenu-id']) && 
+			isset($_POST['itemmenu-name']) && 
+			isset($_POST['itemmenu-title']) && 
+			isset($_POST['itemmenu-type']) && 
+			isset($_POST['itemmenu-parent']) && 
+			isset($_POST['itemmenu-sort']) && 
+			isset($_POST['itemmenu-date_create']) && 
+			isset($_POST['itemmenu-element']) && 
+			isset($_POST['itemmenu-element_name'])){
+						EditItemMenu::editContent($_POST['itemmenu-id'], 
+												$_POST['itemmenu-name'], 
+												$_POST['itemmenu-title'], 
+												$_POST['itemmenu-type'], 
+												$_POST['itemmenu-parent'], 
+												$_POST['itemmenu-sort'], 
+												$_POST['itemmenu-date_create'], 
+												$_POST['itemmenu-element'], 
+												$_POST['itemmenu-element_name']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Пункт меню сохранен</div>";
+
+		}//end if
 		
-		//удаление статьи или товара
+		//добавление пункта меню
+		if(isset($_POST['additemmenu-name']) && 
+			isset($_POST['additemmenu-title']) && 
+			isset($_POST['additemmenu-type']) && 
+			isset($_POST['additemmenu-parent']) && 
+			isset($_POST['additemmenu-sort']) && 
+			isset($_POST['additemmenu-date_create']) && 
+			isset($_POST['additemmenu-element']) && 
+			isset($_POST['additemmenu-element_name'])){
+						AddItemMenu::addContent($_POST['additemmenu-name'], 
+												$_POST['additemmenu-title'], 
+												$_POST['additemmenu-type'], 
+												$_POST['additemmenu-parent'], 
+												$_POST['additemmenu-sort'], 
+												$_POST['additemmenu-date_create'], 
+												$_POST['additemmenu-element'], 
+												$_POST['additemmenu-element_name']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Пункт меню добавлен</div>";
+
+		}//end if
+		
+		//добавление меню
+		if(isset($_POST['addmenu-name'])){
+			AddMenu::addContent($_POST['addmenu-name']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Меню добавлено</div>";
+
+		}//end if
+		
+		//редактирование меню
+		if(isset($_POST['editmenu-name']) && isset($_POST['editmenu-id'])){
+			EditMenu::editContent($_POST['editmenu-name'], $_POST['editmenu-id']);
+			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Меню изменено</div>";
+
+		}//end if
+		
+		//удаление статьи или товара или меню
 		if(isset($_POST['delete-id']) && isset($_POST['delete-type'])){
 			 ItemDelete::deleteContent($_POST['delete-id'], $_POST['delete-type']);
 			echo "<div style='padding: 20px; margin: 100px auto; width: 300px; font-size: 24px; text-align: center; border: 2px solid #000000; background: #216161; color: #ffffff;'>Удалено</div>";

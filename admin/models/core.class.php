@@ -36,7 +36,7 @@ abstract class Core{
 	static function getCategories(){
 		global $mysqli;
 		
-		$result = $mysqli->query("SELECT id, title FROM categories") or die('ошибка s');
+		$result = $mysqli->query("SELECT id, title FROM categories") or die('ошибка выбора категорий');
 		$categories = $result->fetch_all(MYSQLI_ASSOC);
 
 		return $categories;
@@ -47,10 +47,67 @@ abstract class Core{
 	static function getCategoriesProduct(){
 		global $mysqli;
 		
-		$result = $mysqli->query("SELECT id, title FROM productcat") or die('ошибка s');
+		$result = $mysqli->query("SELECT id, title FROM productcat") or die('ошибка выбора категорий товаров');
 		$categories = $result->fetch_all(MYSQLI_ASSOC);
 
 		return $categories;
+
+	}
+	
+	//получаем список меню
+	static function getMenu(){
+		global $mysqli;
+		
+		$result = $mysqli->query("SELECT id, name FROM menus") or die('ошибка выбора списка меню');
+		$menus = $result->fetch_all(MYSQLI_ASSOC);
+
+		return $menus;
+
+	}
+	
+	//получаем список типов меню
+	static function getTypeMenu(){
+		global $mysqli;
+		
+		$result = $mysqli->query("SELECT title FROM typemenu") or die('ошибка выбора списка типов меню');
+		$typesMenu = $result->fetch_all(MYSQLI_ASSOC);
+
+		return $typesMenu;
+
+	}
+	
+	//получаем список всех пунктов меню
+	static function getParentMenu(){
+		global $mysqli;
+		
+		$result = $mysqli->query("SELECT title FROM menu WHERE parent = 'first'") or die('ошибка выбора списка пунктов меню');
+		$parentMenu = $result->fetch_all(MYSQLI_ASSOC);
+
+		return $parentMenu;
+
+	}
+	
+	//получаем список всех элементов для выборки в меню
+	static function getElement($type = 'материал'){
+		global $mysqli;
+		
+		if(!$type){
+			$type = 'материал';
+		}
+	
+		//получаем таблицу
+		$result = $mysqli->query("SELECT tablename FROM typemenu WHERE title = '$type'") or die('Ошибка получения таблицы');
+		$table = $result->fetch_assoc();
+		$table = $table['tablename'];
+		
+		if($table == "catalog"){
+			$elements = [];
+		}else{
+			//получаем элементы
+			$result = $mysqli->query("SELECT id, title FROM $table") or die('Ошибка получения элемента 1');
+			$elements = $result->fetch_all(MYSQLI_ASSOC);
+			return $elements;
+		}
 
 	}
 

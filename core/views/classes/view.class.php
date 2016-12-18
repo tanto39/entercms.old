@@ -12,6 +12,8 @@ class View{
 	static public $getMenu;
 	//свойство куда будет заносится название меню
 	static public $nameMenu;
+	//свойство куда будут заносится родительские пункты меню
+	static public $parentsMenu;
 	
 	//проверка валидности числа
 	public function toInteger($data){

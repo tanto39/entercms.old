@@ -31,9 +31,12 @@ $mysqli = Db::getMysqli();
 
 //заносим данные из форм добавления и редактирования в базу
 GetData::setData();
-//определяем активную категорию, заносим ее в куку для дальнейшего использования
+//определяем активную категорию или меню, заносим ее в куку для дальнейшего использования
 GetData::activeCategory();
 GetData::activeCategoryProduct();
+GetData::activeMenu();
+GetData::activeTypeMenu();
+GetData::setTypeMenu();
 
 //авторизация
 $auth = []; //массив со значениями логина и пароля из формы

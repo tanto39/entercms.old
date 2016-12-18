@@ -10,6 +10,14 @@ class View{
 	static public $getSearch;
 	//свойство куда будет заносится выборка списка категорий
 	static public $getCategories;
+	//свойство куда будет заносится выборка списка меню
+	static public $getMenu;
+	//свойство куда будет заносится тип меню
+	static public $getTypeMenu;
+	//свойство куда будут заносится все пункты меню
+	static public $getParentMenu;
+	//свойство куда будут заносится все элементы для меню
+	static public $getElement;
 	
 	//проверка валидности числа
 	public function toInteger($data){

@@ -12,6 +12,8 @@ static function deleteContent($id, $type){
 	if($type=='product'){$stmt = $mysqli->prepare("DELETE FROM products WHERE id = ?") or die('Ошибка удаления');}
 	if($type=='category'){$stmt = $mysqli->prepare("DELETE FROM categories WHERE id = ?") or die('Ошибка удаления');}
 	if($type=='categoriesProduct'){$stmt = $mysqli->prepare("DELETE FROM productcat WHERE id = ?") or die('Ошибка удаления');}
+	if($type=='itemMenu'){$stmt = $mysqli->prepare("DELETE FROM menu WHERE id = ?") or die('Ошибка удаления');}
+	if($type=='menu'){$stmt = $mysqli->prepare("DELETE FROM menus WHERE id = ?") or die('Ошибка удаления');}
 	
 	$stmt->bind_param("s", $id) or die('Ошибка b');
 	$stmt->execute() or die('Ошибка e');

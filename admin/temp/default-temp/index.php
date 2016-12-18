@@ -2,6 +2,9 @@
 для подключения контента использовать ContentController::route($table), $table - имя таблицы, категория либо статья;
 для вывода меню использовать MenuController::route('top-menu'), top-menu - название меню в таблице, поле name;
 -->
+<?
+	global $uri;
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,6 +16,7 @@
 	<link href="temp/default-temp/css/style.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="temp/default-temp/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="temp/default-temp/js/myscripts.js"></script>
+	<script type="text/javascript" src="temp/default-temp/js/editmenu.js"></script>
 	
 	<!--метатеги для перенаправления после добавления или редактирования-->
 	<?php if($_POST['title']) : ?>
@@ -27,6 +31,18 @@
 		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['selectcatproduct']) : ?>
 		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['selectmenu']) : ?>
+		<meta http-equiv="refresh" content="0; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['itemmenu-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['additemmenu-title']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?menus=10" />
+	<?php elseif($_POST['addmenu-name']) : ?>
+		<meta http-equiv="refresh" content="1; url=/admin/index.php?menu=10" />
+	<?php elseif($_POST['editmenu-name']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['add-get-type-menu']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['prod-title']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php elseif($_POST['addprod-title']) : ?>
@@ -36,6 +52,8 @@
 	<?php elseif($_POST['addprodcat-title']) : ?>
 		<meta http-equiv="refresh" content="1; url=/admin/index.php?categoriesProduct=10" />
 	<?php elseif($_POST['delete-id']) : ?>
+		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
+	<?php elseif($_POST['get-type-menu']) : ?>
 		<meta http-equiv="refresh" content="1; url=<?php echo $_SERVER['HTTP_REFERER'];?>" />
 	<?php endif;?>
 	
@@ -59,18 +77,13 @@
 		
 		<div class="topmenu">
 		<ul>
-			<li><a href="/admin/index.php?articles=10">Материалы</a></li>
-			<li><a href="/admin/index.php?categories=10">Категории</a></li>
-			<li><a href="/admin/index.php?products=10">Товары</a></li>
-			<li><a href="/admin/index.php?categoriesProduct=10">Категории товаров</a></li>
+			<li <? if($uri == "/admin/index.php?articles=10"){echo "class='active'";}?>><a href="/admin/index.php?articles=10">Материалы</a></li>
+			<li <? if($uri == "/admin/index.php?categories=10"){echo "class='active'";}?>><a href="/admin/index.php?categories=10">Категории</a></li>
+			<li <? if($uri == "/admin/index.php?products=10"){echo "class='active'";}?>><a href="/admin/index.php?products=10">Товары</a></li>
+			<li <? if($uri == "/admin/index.php?categoriesProduct=10"){echo "class='active'";}?> ><a href="/admin/index.php?categoriesProduct=10">Категории товаров</a></li>
+			<li <? if($uri == "/admin/index.php?menus=10"){echo "class='active'";}?>><a href="/admin/index.php?menus=10">Пункты меню</a></li>
+			<li <? if($uri == "/admin/index.php?menu=10"){echo "class='active'";}?>><a href="/admin/index.php?menu=10">Меню</a></li>
 		</ul>
-            <div class="search">
-				<form action="/" method="post" class="form-inline">
-					<input type="hidden" name="option" value="search"/>
-					<input name="query" id="mod-search-searchword" maxlength="20" class="inputbox search-query" type="text" size="20" value="Поиск..." />
-					<button class="button btn btn-primary">Найти</button>	
-				</form>
-            </div>
 		</div>
 	</header><!-- .header-->
     

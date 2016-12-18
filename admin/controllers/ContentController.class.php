@@ -1,5 +1,5 @@
 <?php
-//контроллер блога категории
+//контроллер контента
 
 class ContentController extends Controller{
 	//подключаем файл представления
@@ -46,29 +46,33 @@ class ContentController extends Controller{
 			View::$getCategories = Core::getCategoriesProduct(); //получаем список категорий
 			require "views/addCategoriesProduct.php"; //добавить категорию товара
 		}elseif($_GET['menus']){
-			require "views/menus.php"; //список меню
+			View::$getMenu = Core::getMenu(); //получаем список меню
+			View::$getView = ItemMenus::getContent($_COOKIE['activeMenu']); //список пунктов меню из БД
+			require "views/menus.php"; //выводим пункты меню
+		}elseif($_GET['menu']){
+			View::$getMenu = Core::getMenu(); //получаем список меню
+			require "views/menu.php"; //список меню
 		}elseif($_GET['editMenu']){
+			View::$getView = EditMenu::getContent($_GET['editMenu']);
 			require "views/editMenu.php"; //редактировать меню
 		}elseif($_GET['addMenu']){
 			require "views/addMenu.php"; //добавить меню
+		}elseif($_GET['addItemMenu']){
+			View::$getMenu = Core::getMenu(); //получаем список меню
+			View::$getTypeMenu = Core::getTypeMenu(); //получаем список типов меню
+			View::$getParentMenu = Core::getParentMenu(); //получаем список типов меню
+			View::$getElement = Core::getElement($_COOKIE['add-get-type-menu']); //получаем список элементов для меню
+			require "views/addItemMenu.php"; //добавить пункт меню
+		}elseif($_GET['editItemMenu']){
+			View::$getMenu = Core::getMenu(); //получаем список меню
+			View::$getTypeMenu = Core::getTypeMenu(); //получаем список типов меню
+			View::$getParentMenu = Core::getParentMenu(); //получаем список типов меню
+			View::$getView = EditItemMenu::getContent($_GET['editItemMenu']); //список пункта меню из БД
+			View::$getElement = Core::getElement(View::$getView['type']); //получаем список элементов для меню
+			require "views/editItemMenu.php"; //редактировать пункт меню
 		}
 		
 	}	//end route
-	
-	//сортировка
-	static function setSort($table){
-		global $uri;
-			if($table == "productcat"){
-				$sortBy = Controller::toString($_POST['sort']); //получаем сортировку 
-				switch ($sortBy){//задаем значения для сортировки при подстановке в запрос БД
-					case 'priceUp' : ProductCategory::$sort = 'price'; break;
-					case 'priceDown' : ProductCategory::$sort = 'price DESC'; break;
-					case 'manufacturer' : ProductCategory::$sort = 'manufacturer'; break;
-					default: ProductCategory::$sort = 'price';
-				}
-				echo ProductCategory::$sort;
-			}
-	}//end setSort
 	
 }
 	

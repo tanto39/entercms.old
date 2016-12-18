@@ -52,7 +52,7 @@ $category['title'] - заголовок из списка категорий */
 			}	
 		?>
 		<div class="edit-item">
-			<a href="<?php echo '/admin?editArticle='.$articles[$i]['id']?>"><?php echo $articles[$i]['title']?></a></h2>
+			<a href="<?php echo '/admin?editArticle='.$articles[$i]['id']?>"><?php echo $articles[$i]['title']?></a>
 			<div class="item-category"><?php echo $articles[$i]['category']?></div>
 			<!--удаление статьи-->
 			<form class="delete" method="POST" action="<?php echo $uri; ?>">
